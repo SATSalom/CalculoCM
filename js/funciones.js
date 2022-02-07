@@ -6,7 +6,7 @@ const el = {
 },
 valores = () => { // Función que obtiene los valores, procesa los cálculos necesarios y muestra los resultados en los campos pertinentes.
 	const A = Number (el.inputE[0].value),
-	B = Number (el.inputE[2].value),
+	B = Number (el.inputE[1].value),
 	C = A*B+A,
 	D = Number (el.inputE[2].value),
 	E = C*D+C;
