@@ -54,7 +54,7 @@
 												<div class="field-body">
 													<div class="field">
 														<p class="control is-expanded has-icons-left">
-															<input id="ccm-a" class="input" type="number" placeholder="Coste (A)" required>
+															<input id="ccm-a" class="input" type="number" min="0" placeholder="Coste (A)" step="0.01" required>
 															<span class="icon is-small is-left">
 																<i class="fas fa-tags"></i>
 															</span>
@@ -63,7 +63,7 @@
 													</div>
 													<div class="field">
 														<p class="control is-expanded">
-															<input id="ccm-b" class="input is-success" type="number" placeholder="(B)" value="1.36">
+															<input id="ccm-b" class="input is-success" type="number" placeholder="(B)" step="0.01" value="0.262">
 														</p>
 														<p class="help">(B)</p>
 													</div>
@@ -71,7 +71,7 @@
 														<p class="control is-expanded">
 															<input id="ccm-c" class="input is-success" type="number" placeholder="[A*B+A](C)" readonly>
 														</p>
-														<p class="help">=A*B+A (C)</p>
+														<p class="help">= A*B+A (C)</p>
 													</div>
 												</div>
 											</div>
@@ -79,9 +79,9 @@
 												<div class="field-body">
 													<div class="field">
 														<p class="control is-expanded has-icons-left">
-															<input id="ccm-d" class="input" type="number" placeholder="Margen (D)" value="1.05">
+															<input id="ccm-d" class="input" type="number" placeholder="Margen (D)" step="0.01" value="1.05">
 															<span class="icon is-small is-left">
-																<i class="fas fa-tags"></i>
+																<i class="fas fa-percentage"></i>
 															</span>
 														</p>
 														<p class="help">Margen (D)</p>
@@ -90,11 +90,11 @@
 														<p class="control is-expanded">
 															<input id="ccm-d" class="input is-success" type="number" placeholder="PVP (E)" readonly>
 														</p>
-														<p class="help">PVP (E)</p>
+														<p class="help">PVP = C*D+C (E)</p>
 													</div>
 												</div>
 											</div>
-											<p class="help">...</p>
+											<p class="help">Puedes usar la rueda del ratón sobre los campos para incrementar/reducir los valores.<br><b>No disponible en Chrome.</b> </p>
 										</form>
 									</div>
 								</div>
