@@ -63,13 +63,13 @@
 													</div>
 													<div class="field">
 														<p class="control is-expanded">
-															<input id="ccm-b" class="input is-success" type="number" placeholder="(B)" step="0.01" value="0.262">
+															<input id="ccm-b" class="input" type="number" placeholder="(B)" step="0.01" value="0.262">
 														</p>
 														<p class="help">(B)</p>
 													</div>
 													<div class="field">
 														<p class="control is-expanded">
-															<input id="ccm-c" class="input is-success" type="number" placeholder="[A*B+A](C)" readonly>
+															<input id="ccm-c" class="input" type="number" placeholder="[A*B+A](C)" readonly>
 														</p>
 														<p class="help">= A*B+A (C)</p>
 													</div>
@@ -87,14 +87,17 @@
 														<p class="help">Margen (D)</p>
 													</div>
 													<div class="field">
-														<p class="control is-expanded">
-															<input id="ccm-d" class="input is-success" type="number" placeholder="PVP (E)" readonly>
+														<p class="control is-expanded has-icons-right">
+															<input id="ccm-d" class="input is-focused" type="number" placeholder="PVP (E)" value="0" readonly>
+															<span class="icon is-small is-right">
+																<i class="fas fa-euro-sign"></i>
+															</span>
 														</p>
 														<p class="help">PVP = C*D+C (E)</p>
 													</div>
 												</div>
 											</div>
-											<p class="help">Puedes usar la rueda del ratón sobre los campos para incrementar/reducir los valores.<br><b>No disponible en Chrome.</b> </p>
+											<p class="help">Pulsar Intro después de introducir/modificar algún valor.<br>Puedes usar la rueda del ratón sobre los campos para incrementar/reducir los valores. <b>No disponible en Chrome.</b></p>
 										</form>
 									</div>
 								</div>
