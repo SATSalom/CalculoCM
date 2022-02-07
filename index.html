@@ -39,54 +39,70 @@
 
 	</head>
 	<body>
-		<header>
-			<!--
-				*
-				* Bloque HEADER
-				*
-			-->
-					 <figure id="logo">
-						<!--
-						 *
-						 * Bloque LOGO
-						 *
-						-->
-								<img src="" alt="">
-					 </figure>
-
-					 <nav id="navegacionPrincipal">
-						<!--
-						 *
-						 * Bloque Links de Navegación Principal
-						 *
-						-->
-					</nav>
-
-		</header>
-
 		<main>
-			<!--
-				*
-				* Bloque MAIN
-				*
-			-->
-
-					<section>
-						<!--
-						 *
-						 * Bloque SECTION
-						 *
-						-->
-					</section>
-
-					<article>
-						<!--
-						 *
-						 * Bloque ARTICLE
-						 *
-						-->
-					</article>
-
+			<section class="hero is-dark is-bold is-fullheight">
+				<div class="hero-body">
+					<div class="container has-text-centered">
+						<section class="section">
+							<div class="columns">
+								<div class="column is-half is-offset-one-quarter">
+									<div class="container">
+										<h1 class="title is-uppercase">CalculoCM</h1>
+										<h2 class="subtitle">Cálculo con margen.</h2>
+										<form name="calculoCM">
+											<div class="field is-horizontal">
+												<div class="field-body">
+													<div class="field">
+														<p class="control is-expanded has-icons-left">
+															<input id="ccm-a" class="input" type="number" placeholder="Coste (A)" required>
+															<span class="icon is-small is-left">
+																<i class="fas fa-tags"></i>
+															</span>
+														</p>
+														<p class="help">Coste (A)</p>
+													</div>
+													<div class="field">
+														<p class="control is-expanded">
+															<input id="ccm-b" class="input is-success" type="number" placeholder="(B)" value="1.36">
+														</p>
+														<p class="help">(B)</p>
+													</div>
+													<div class="field">
+														<p class="control is-expanded">
+															<input id="ccm-c" class="input is-success" type="number" placeholder="[A*B+A](C)" readonly>
+														</p>
+														<p class="help">=A*B+A (C)</p>
+													</div>
+												</div>
+											</div>
+											<div class="field is-horizontal">
+												<div class="field-body">
+													<div class="field">
+														<p class="control is-expanded has-icons-left">
+															<input id="ccm-d" class="input" type="number" placeholder="Margen (D)" value="1.05">
+															<span class="icon is-small is-left">
+																<i class="fas fa-tags"></i>
+															</span>
+														</p>
+														<p class="help">Margen (D)</p>
+													</div>
+													<div class="field">
+														<p class="control is-expanded">
+															<input id="ccm-d" class="input is-success" type="number" placeholder="PVP (E)" readonly>
+														</p>
+														<p class="help">PVP (E)</p>
+													</div>
+												</div>
+											</div>
+											<p class="help">...</p>
+										</form>
+									</div>
+								</div>
+							</div>
+						</section>
+					</div>
+				</div>
+			</section>
 		</main>
 
 		<footer>
