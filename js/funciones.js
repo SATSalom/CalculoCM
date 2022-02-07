@@ -2,14 +2,14 @@
 
 const el = {
 	inputE: document.body.querySelectorAll ('input:not([readonly])'), // Elementos input editables.
-	inputN: document.body.querySelectorAll ('input[readonly]') // Elementos input sólo legible.
+	inputN: document.body.querySelectorAll ('input[readonly]') // Elementos input sólo legibles.
 },
 valores = () => { // Función que obtiene los valores, procesa los cálculos necesarios y muestra los resultados en los campos pertinentes.
 	const A = Number (el.inputE[0].value),
-	B = Number (el.inputE[1].value),
-	C = Number (A*B) + Number(A),
+	B = Number (el.inputE[2].value),
+	C = A*B+A,
 	D = Number (el.inputE[2].value),
-	E = Number (C*D) + Number (C);
+	E = C*D+C;
 
 	el.inputN[0].value = parseFloat(C).toFixed(4); // Muestra el resultado en input C, redondeando al cuarto decimal por defecto.
 	el.inputN[1].value = parseFloat(E).toFixed(4); // Muestra resultado en input E, redondeando al cuarto decimal por defecto.
