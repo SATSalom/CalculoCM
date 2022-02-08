@@ -2,9 +2,10 @@
 
 const el = {
 	inputE: document.body.querySelectorAll ('input:not([readonly])'), // Elementos input editables.
-	inputN: document.body.querySelectorAll ('input[readonly]') // Elementos input sólo legibles.
+	inputN: document.body.querySelectorAll ('input[readonly]'), // Elementos input sólo legibles.
+	formulario: document.body.querySelector ('form[name=calculoCM]') // Elemento del formulario que engloba los inputs.
 },
-valores = () => { // Función que obtiene los valores, procesa los cálculos necesarios y muestra los resultados en los campos pertinentes.
+valoresCalcular = () => { // Función que obtiene los valores, hace los cálculos necesarios y muestra los resultados en los campos pertinentes.
 	const A = Number (el.inputE[0].value),
 	B = Number (el.inputE[1].value),
 	C = A*B+A,
@@ -16,13 +17,22 @@ valores = () => { // Función que obtiene los valores, procesa los cálculos nec
 
 	return {A,B,C,D,E}; // Para debug.
 },
-registrarEventos = () => { // Asigna un evento que ejecuta código cada vez que un valor cambie en cualquiera de los input editables.
-	el.inputE.forEach (el => el.addEventListener ('change', () => {
+registrarEventos = () => {
+	el.inputE.forEach (el => el.addEventListener ('change', () => { // Asigna un evento que ejecuta código cada vez que un valor cambie en cualquiera de los input editables.
 		calcularValores (); // Llama a la función que engloba a las demás necesarias para los cálculos.
 	}));
+	el.formulario.addEventListener ('submit', (e) => { // Asigna un evento al formulario que ejecuta código cada vez que pulsamos Intro sobre algunos algunos de sus inputs.
+		e.preventDefault(); // Evitamos función por defecto de enviar y recargar.
+	});
 },
 calcularValores = () => {
-	console.info (valores ()); // Calculamos y mostramos en consola valores sin redondear.
+	switch (Array.from(el.inputE).filter(i => i.value === "").length > 0) { // Comprobamos si falta algún valor en los inputs editables..
+		case !1: // Si no falta ninguno, continuamos.
+			console.info (valoresCalcular ()); // Calculamos y mostramos en consola valores sin redondear.
+		break;
+		default: // Si falta algunos mostramos aviso en consola.
+			console.warn ('Faltan valores o no son válidos.');
+	};
 };
 
 registrarEventos (); // Llamamos a la función para que los eventos tengas efecto.
