@@ -49,7 +49,7 @@
 													</div>
 													<div class="field">
 														<p class="control is-expanded">
-															<input id="ccm-b" class="input" type="number" placeholder="(B)" step="0.01" value="0.262">
+															<input id="ccm-b" class="input" type="number" placeholder="(B)" step="0.001" value="0.262" required>
 														</p>
 														<p class="help">(B)</p>
 													</div>
@@ -65,7 +65,7 @@
 												<div class="field-body">
 													<div class="field">
 														<p class="control is-expanded has-icons-left">
-															<input id="ccm-d" class="input" type="number" placeholder="Margen (D)" step="0.01" value="1.05">
+															<input id="ccm-d" class="input" type="number" placeholder="Margen (D)" step="0.01" value="1.05" required>
 															<span class="icon is-small is-left">
 																<i class="fas fa-percentage"></i>
 															</span>
@@ -84,6 +84,7 @@
 												</div>
 											</div>
 											<p class="help">Pulsar Intro después de introducir/modificar algún valor.<br>Puedes usar la rueda del ratón sobre los campos para incrementar/reducir los valores. <b>No disponible en Chrome.</b></p>
+											<input type="submit" hidden readonly/>
 										</form>
 									</div>
 								</div>
