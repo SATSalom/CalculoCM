@@ -18,9 +18,9 @@ calcularValores = () => { // Función que obtiene los valores, hace los cálculo
 	return {A,B,C,D,E}; // Para debug; devuelve los valores calculados sin redondear.
 },
 registrarEventos = () => {
-	el.inputE.forEach (el => el.addEventListener ('change', () => { // Asigna un evento que ejecuta código cada vez que un valor cambie en cualquiera de los input editables.
+	el.inputE.forEach (ele => ['change','keyup'].forEach (ev => ele.addEventListener (ev, () => { // Asigna eventos que ejecutan código cada vez que un valor cambie en cualquiera de los input editables.
 		preCalcular (); // Llama a la función que engloba a las demás necesarias para los cálculos.
-	}));
+	})));
 	el.formulario.addEventListener ('submit', (e) => { // Asigna un evento al formulario que ejecuta código cada vez que pulsamos Intro sobre algunos algunos de sus inputs.
 		e.preventDefault(); // Evitamos función por defecto de enviar y recargar.
 	});
