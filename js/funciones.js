@@ -12,21 +12,21 @@ calcularValores = () => { // Función que obtiene los valores, hace los cálculo
 	D = Number (el.inputE[2].value),
 	E = C*D+C;
 
-	el.inputN[0].value = parseFloat(C).toFixed(4); // Muestra el resultado en input C, redondeando al cuarto decimal por defecto.
-	el.inputN[1].value = parseFloat(E).toFixed(4); // Muestra resultado en input E, redondeando al cuarto decimal por defecto.
+	el.inputN[0].value = parseFloat(C).toFixed (4); // Muestra el resultado en input C, redondeando al cuarto decimal por defecto.
+	el.inputN[1].value = parseFloat(E).toFixed (4); // Muestra resultado en input E, redondeando al cuarto decimal por defecto.
 
 	return {A,B,C,D,E}; // Para debug; devuelve los valores calculados sin redondear.
 },
 registrarEventos = () => {
-	el.inputE.forEach (ele => ['change','keyup'].forEach (ev => ele.addEventListener (ev, () => { // Asigna eventos que ejecutan código cada vez que un valor cambie en cualquiera de los input editables.
+	el.inputE.forEach (ie => ['change','keyup'].forEach (e => ie.addEventListener (e, () => { // Asigna eventos a cada input editable que ejecutan código cada vez que un valor cambie en cualquiera de los input editables.
 		preCalcular (); // Llama a la función que engloba a las demás necesarias para los cálculos.
 	})));
 	el.formulario.addEventListener ('submit', (e) => { // Asigna un evento al formulario que ejecuta código cada vez que pulsamos Intro sobre algunos algunos de sus inputs.
-		e.preventDefault(); // Evitamos función por defecto de enviar y recargar.
+		e.preventDefault (); // Evitamos función por defecto de enviar y recargar.
 	});
 },
 preCalcular = () => {
-	switch (Array.from(el.inputE).filter(i => i.value === "").length > 0) { // Comprobamos si falta algún valor en los inputs editables.
+	switch (Array.from (el.inputE).filter (i => i.value === "").length > 0 && !el.formulario.reportValidity ()) { // Comprobamos si falta algún valor en los inputs editables.
 		case !1: // Si no falta ninguno, continuamos.
 			console.info (calcularValores ()); // Calculamos y mostramos en consola valores sin redondear.
 		break;
