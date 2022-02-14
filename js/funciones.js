@@ -8,7 +8,7 @@ const el = {
 },
 calcularValores = () => { // Función que obtiene los valores, hace los cálculos necesarios y muestra los resultados en los campos pertinentes.
 	const A = Number (el.inputE[0].value),
-	B = el.inputE[1].value, // Guardamos el valor de margen en una cookie, para mantenerlo entre sesiones.
+	B = el.inputE[1].value, // Obtenemos el valor actual del input de 'margen'.
 	C = A*B+A;
 	//C = A*B+A,
 	//D = Number (el.inputE[2].value),
@@ -35,16 +35,16 @@ animSave = (id, tecla) => { // Función que activa la animación del icono de gu
 	switch (id == 'ccm-b' && tecla == 'Enter') { // Comprobamos que se intenta ejecutar desde el input de 'margen' pulsando Intro/Enter.
 		case true:
 			animEl.add ('ccm-save-a'); // Añadimos al elemento de 'margen' la clase de css que lleva la animación.
-			modMargen (el.inputE[1].value); // Guarda el valor actual de input de 'margen' en cookie.
-			console.info ('Valor de margen guardado:',el.inputE[1].value)
-			setTimeout (() => { // Eliminamos la clase antes añadida después de 900 ms.
-				animEl.remove ('ccm-save-a');
+			modMargen (el.inputE[1].value); // Guarda el valor actual de input de 'margen' localmente.
+			console.info ('Valor de margen guardado:', el.inputE[1].value) // Mostramos en consola el valor guardado.
+			setTimeout (() => {
+				animEl.remove ('ccm-save-a'); // Eliminamos la clase antes añadida después de 900 ms.
 			}, 900);
 		break;
 	}
 },
 preCalcular = () => {
-	switch (Array.from (el.inputE).filter (i => i.value === "").length > 0 && !el.formulario.reportValidity ()) { // Comprobamos si falta algún valor en los inputs editables.
+	switch (Array.from (el.inputE).filter (i => i.value === '').length > 0 && !el.formulario.reportValidity ()) { // Comprobamos si falta algún valor en los inputs editables.
 		case !1: // Si no falta ninguno, continuamos.
 			console.info (calcularValores ()); // Calculamos y mostramos en consola valores sin redondear.
 		break;
@@ -52,15 +52,15 @@ preCalcular = () => {
 			console.warn ('Faltan valores o no son válidos.'); // Si falta algunos mostramos aviso en consola.
 	};
 },
-modMargen = (v) => { // Comprueba, carga o guarda el valor del input 'margen' en una cookie. (para mantenerlo entre sesiones)
+modMargen = (v) => { // Comprueba, carga o guarda el valor del input 'margen' localmente. (para mantenerlo entre sesiones)
 	const val = v || el.margenPD, // Comprobamos si se ha pasado algún número como parámetro y lo asignamos a val, en caso contrario le asignamos el valor por defecto.
 	margen = el.inputE[1], // Obtenemos el elemento input de 'margen'.
-	cMargen = Number (localStorage.getItem ('ccm-margen')); // Comprobamos si existe una cookie con un valor modificado de 'margen'.
+	cMargen = Number (localStorage.getItem ('ccm-margen')); // Comprobamos si existe almacenado localmente un valor modificado de 'margen'.
 
 	return margen.value = v ? !localStorage.setItem ('ccm-margen', parseFloat (v).toFixed (4)) ? v : cMargen : cMargen ? cMargen : val;
 };
 
 document.addEventListener ('DOMContentLoaded', () => { // Esperamos a que el DOM esté cargado antes de inicializar nuestras funciones.
 	registrarEventos (); // Llamamos a la función para que los eventos en inputs tengan efecto.
-	modMargen (); // Comprobamos si existe una cookie con un valor modificado del 'margen' y lo cargamos; o en su defecto mostramos el valor por defecto.
+	modMargen (); // Comprobamos si existe localmente un valor modificado del 'margen' y lo cargamos; o en su defecto mostramos el valor por defecto.
 });
