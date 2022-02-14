@@ -47,15 +47,18 @@
 														</p>
 														<p class="help">Coste</p>
 													</div>
-													<div class="field">
-														<p class="control is-expanded has-icons-left">
-															<input id="ccm-b" class="input" type="number" title="Margen (B)" placeholder="Margen" step="0.001" value="1.20" required>
-															<span class="icon is-small is-left">
-																<i class="fas fa-percentage"></i>
-															</span>
-														</p>
-														<p class="help">Margen</p>
-													</div>
+														<div class="field">
+															<p class="control has-icons-left ccm-save-p">
+																<input id="ccm-b" class="input" type="number" title="Margen (B)" placeholder="Margen" step="0.001" required>
+																<span class="icon is-small is-left">
+																	<i class="fas fa-percentage"></i>
+																</span>
+																<span class="icon is-small is-left ccm-save">
+																	<i class="fas fa-save"></i>
+																</span>
+															</p>
+															<p class="help">Margen</p>
+														</div>
 													<div class="field">
 														<p class="control is-expanded has-icons-right">
 															<input id="ccm-c" class="input has-text-light has-background-dark has-text-right" title="PVP [A*B+A] (C)" placeholder="PVP" value="0" readonly>
@@ -69,7 +72,7 @@
 											</div>
 											<div class="field is-horizontal is-hidden">
 												<div class="field-body">
-													<div class="field">
+													<div class="field has-addons has-addons-right">
 														<p class="control is-expanded has-icons-left">
 															<input id="ccm-d" class="input" type="number" placeholder="Margen (D)" step="0.01" value="1.05" required>
 															<span class="icon is-small is-left">
@@ -89,7 +92,7 @@
 													</div>
 												</div>
 											</div>
-											<p class="help">Puedes usar la rueda del ratón sobre los campos para incrementar/reducir los valores. <b>No disponible en Chrome.</b></p>
+											<p class="help">Es posible guardar el valor de margen para mantenerlo entre sesiones. Pulsando Intro/Enter mientras el campo está activo.</p>
 											<input type="submit" hidden readonly/>
 										</form>
 									</div>
@@ -99,6 +102,7 @@
 					</div>
 				</div>
 			</section>
-		</main><script type="text/javascript" src="js/funciones.js?v=2202102119"></script>
+		</main>
+		<script type="text/javascript" src="js/funciones.js?v=2202102119"></script>
 	</body>
 </html>
