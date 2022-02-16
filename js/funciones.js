@@ -14,16 +14,19 @@ calcularValores = () => { // Función que obtiene los valores, hace los cálculo
 	//D = Number (el.inputE[2].value),
 	//E = C*D+C;
 
-	el.inputN[0].value = parseFloat (C).toFixed (4); // Muestra el resultado en input C, redondeando al cuarto decimal por defecto.
+	el.inputN[0].value = parseFloat (C); // Muestra el resultado en input C, redondeando al cuarto decimal por defecto.
 	//el.inputN[1].value = parseFloat (E).toFixed (4); // Muestra resultado en input E, redondeando al cuarto decimal por defecto.
 
 	//return {A,B,C,D,E}; // Para debug; devuelve los valores calculados sin redondear.
 	return {A,B,C}; // Para debug; devuelve los valores calculados sin redondear.
 },
 registrarEventos = () => {
-	el.inputE.forEach (ie => ['change','keyup'].forEach (e => ie.addEventListener (e, (ev) => { // Asigna eventos a cada input editable que ejecutan código cada vez que un valor cambie en cualquiera de los input editables.
-		preCalcular (); // Llama a la función que engloba a las demás necesarias para los cálculos, pasando id del input sobre el que se ha ejecutado el evento y tecla pulsada sobre el mismo.
-		animSave (ie.id, ev.key); // Función que activa la animación del icono de guardado. (al pulsar Intro/Enter sobre el input de margen.)
+	el.inputE.forEach (ie => ['change','keyup','keypress'].forEach (e => ie.addEventListener (e, (ev) => { // Asigna eventos a cada input editable que ejecutan código cada vez que un valor cambie en cualquiera de los input editables.
+		(ev.which != 46 && (ev.which < 48 || ev.which > 57)) ? ev.preventDefault () : !0; // Comprobamos que las teclas pulsadas en los inputs no sean o otra cosa mas que números o punto.
+		if (e == 'keyup') { // Las funciones a continuación no funcionan correctamente con los demás eventos, aquí hago que respondan a uno en concreto.
+			preCalcular (ev.key); // Llama a la función que engloba a las demás necesarias para los cálculos, pasando id del input sobre el que se ha ejecutado el evento y tecla pulsada sobre el mismo.
+			animSave (ie.id, ev.key); // Función que activa la animación del icono de guardado. (al pulsar Intro/Enter sobre el input de margen.)
+		}
 	})));
 	el.formulario.addEventListener ('submit', (e) => { // Asigna un evento al formulario que ejecuta código cada vez que pulsamos Intro sobre algunos algunos de sus inputs.
 		e.preventDefault (); // Evitamos función por defecto de enviar y recargar.
@@ -43,13 +46,13 @@ animSave = (id, tecla) => { // Función que activa la animación del icono de gu
 		break;
 	}
 },
-preCalcular = () => {
-	switch (Array.from (el.inputE).filter (i => i.value === '').length > 0 && !el.formulario.reportValidity ()) { // Comprobamos si falta algún valor en los inputs editables.
+preCalcular = (tecla) => {
+	switch (!Array.from (el.inputE).filter (i => i.value).length < 3 && !el.formulario.reportValidity ()) { // Comprobamos si falta algún valor en los inputs editables.
 		case !1: // Si no falta ninguno, continuamos.
-			console.info (calcularValores ()); // Calculamos y mostramos en consola valores sin redondear.
+			(tecla !== '.') ? console.info (calcularValores ()) : !1; // Cuando la tecla pulsado no sea punto, calculamos y mostramos en consola valores sin redondear.
 		break;
 		default:
-			console.warn ('Faltan valores o no son válidos.'); // Si falta algunos mostramos aviso en consola.
+			console.warn ('Faltan valores o no son válidos.'); // Si falta algún valor en los input editables, mostramos aviso en consola.
 	};
 },
 modMargen = (v) => { // Comprueba, carga o guarda el valor del input 'margen' localmente. (para mantenerlo entre sesiones)
@@ -57,7 +60,9 @@ modMargen = (v) => { // Comprueba, carga o guarda el valor del input 'margen' lo
 	margen = el.inputE[1], // Obtenemos el elemento input de 'margen'.
 	cMargen = Number (localStorage.getItem ('ccm-margen')); // Comprobamos si existe almacenado localmente un valor modificado de 'margen'.
 
-	return margen.value = v ? !localStorage.setItem ('ccm-margen', parseFloat (v).toFixed (4)) ? v : cMargen : cMargen ? cMargen : val;
+	margen.selectionStart = margen.selectionEnd = margen.value.length; // Forzamos el cursor al final del valor de 'margen' al guardar.
+
+	return margen.value = parseFloat (v ? !localStorage.setItem ('ccm-margen', Number (v)) ? v : cMargen : cMargen ? cMargen : val);
 };
 
 document.addEventListener ('DOMContentLoaded', () => { // Esperamos a que el DOM esté cargado antes de inicializar nuestras funciones.
