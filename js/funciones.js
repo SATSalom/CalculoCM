@@ -22,7 +22,6 @@ calcularValores = () => { // Función que obtiene los valores, hace los cálculo
 },
 registrarEventos = () => {
 	el.inputE.forEach (ie => ['change','keyup','keypress'].forEach (e => ie.addEventListener (e, ev => { // Asigna eventos que ejecutan código cada vez que un valor cambie en cualquiera de los input editables.
-		console.info (ev.key,':',ev.which)
 		46 == ev.which || !(ev.which < 48 || ev.which > 57) || ev.preventDefault (), // Comprobamos que las teclas pulsadas en los inputs no sean o otra cosa mas que números o punto o evitamos que sean registradas.
 		// Las funciones a continuación no funcionan correctamente con los demás eventos, aquí hago que respondan a uno en concreto.
 		'keyup' == e && (preCalcular (ev.which) /* Llama a la función que engloba a las demás necesarias para los cálculos, pasando id del input sobre el que se ha llamado el evento y la tecla pulsada sobre el mismo */, animSave (ie.id, ev.which) /* Función que activa la animación del icono de guardado. (al pulsar Intro/Enter sobre el input de margen.) */);
