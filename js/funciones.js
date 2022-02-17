@@ -9,15 +9,10 @@ const el = {
 calcularValores = () => { // Función que obtiene los valores, hace los cálculos necesarios y muestra los resultados en los campos pertinentes.
 	const A = Number (el.inputE[0].value),
 	B = el.inputE[1].value, // Obtenemos el valor actual del input de 'margen'.
-	C = A*B+A;
-	//C = A*B+A,
-	//D = Number (el.inputE[2].value),
-	//E = C*D+C;
+	C = Number (A*B+A);
 
-	el.inputN[0].value = parseFloat (C); // Muestra el resultado en input C, redondeando al cuarto decimal por defecto.
-	//el.inputN[1].value = parseFloat (E).toFixed (4); // Muestra resultado en input E, redondeando al cuarto decimal por defecto.
+	el.inputN[0].value = C.round (3); // Muestra el resultado en input C, redondeando al tercer decimal como máximo si es relevante.
 
-	//return {A,B,C,D,E}; // Para debug; devuelve los valores calculados sin redondear.
 	return {A,B,C}; // Para debug; devuelve los valores calculados sin redondear.
 },
 registrarEventos = () => {
@@ -64,6 +59,11 @@ modMargen = (v) => { // Comprueba, carga o guarda el valor del input 'margen' lo
 
 	return margen.value = parseFloat (v ? !localStorage.setItem ('ccm-margen', Number (v)) ? v : cMargen : cMargen ? cMargen : val);
 };
+
+Number.prototype.round = function (n) { // Extendemos a partir del objeto Number, una función para redondear valores.
+	const d = Math.pow (10, n);
+	return Math.round ((this + Number.EPSILON) * d) / d;
+}
 
 document.addEventListener ('DOMContentLoaded', () => { // Esperamos a que el DOM esté cargado antes de inicializar nuestras funciones.
 	registrarEventos (); // Llamamos a la función para que los eventos en inputs tengan efecto.
