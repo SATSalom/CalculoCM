@@ -22,9 +22,10 @@ calcularValores = () => { // Función que obtiene los valores, hace los cálculo
 },
 registrarEventos = () => {
 	el.inputE.forEach (ie => ['change','keyup','keypress'].forEach (e => ie.addEventListener (e, ev => { // Asigna eventos que ejecutan código cada vez que un valor cambie en cualquiera de los input editables.
-		46 == e.which || !(e.which < 48 || e.which > 57) || e.preventDefault (), // Comprobamos que las teclas pulsadas en los inputs no sean o otra cosa mas que números o punto o evitamos que sean registradas.
+		console.info (ev.key,':',ev.which)
+		46 == ev.which || !(ev.which < 48 || ev.which > 57) || ev.preventDefault (), // Comprobamos que las teclas pulsadas en los inputs no sean o otra cosa mas que números o punto o evitamos que sean registradas.
 		// Las funciones a continuación no funcionan correctamente con los demás eventos, aquí hago que respondan a uno en concreto.
-		'keyup' == e && (preCalcular (ev.key) /* Llama a la función que engloba a las demás necesarias para los cálculos, pasando id del input sobre el que se ha llamado el evento y la tecla pulsada sobre el mismo */, animSave (ie.id,ev.key) /* Función que activa la animación del icono de guardado. (al pulsar Intro/Enter sobre el input de margen.) */);
+		'keyup' == e && (preCalcular (ev.which) /* Llama a la función que engloba a las demás necesarias para los cálculos, pasando id del input sobre el que se ha llamado el evento y la tecla pulsada sobre el mismo */, animSave (ie.id, ev.which) /* Función que activa la animación del icono de guardado. (al pulsar Intro/Enter sobre el input de margen.) */);
 	})));
 	el.formulario.addEventListener ('submit', e => { // Asigna un evento al formulario que ejecuta código cada vez que pulsamos Intro sobre cualquiera de sus inputs.
 		e.preventDefault (); // Evitamos función por defecto de enviar y recargar.
@@ -33,7 +34,7 @@ registrarEventos = () => {
 animSave = (id, tecla) => { // Función que activa la animación del icono de guardado.
 	const animEl = el.inputE [1].closest ('.ccm-save-p').classList; // Obtenemos el elemento que contiene los elementos del input 'margen' y sus iconos.
 
-	'ccm-b' == id && 'Enter' == tecla && ( // Comprobamos que se intenta ejecutar desde el input de 'margen' pulsando Intro/Enter.
+	'ccm-b' == id && 13 == tecla && ( // Comprobamos que se intenta ejecutar desde el input de 'margen' pulsando Intro/Enter.
 		animEl.add ('ccm-save-a'), // Añadimos al elemento de 'margen' la clase de css que lleva la animación.
 		modMargen (el.inputE [1].value), // Guarda el valor actual de input de 'margen' localmente.
 		console.info ('Valor de margen guardado:', el.inputE [1].value), // Mostramos en consola el valor guardado.
@@ -44,7 +45,7 @@ animSave = (id, tecla) => { // Función que activa la animación del icono de gu
 preCalcular = tecla => {
 	switch (!Array.from (el.inputE).filter (i => i.value).length < 3 && !el.formulario.reportValidity ()) { // Comprobamos si falta algún valor en los inputs editables.
 		case !1: // Si no falta ninguno, continuamos.
-			'.' !== tecla && console.info (calcularValores ()); // Cuando la tecla pulsado no sea punto, calculamos y mostramos en consola valores sin redondear.
+			46 !== tecla && console.info (calcularValores ()); // Cuando la tecla pulsado no sea punto, calculamos y mostramos en consola valores sin redondear.
 		break;
 		default:
 			console.warn ('Faltan valores o no son válidos.'); // Si falta algún valor en los input editables, mostramos aviso en consola.
