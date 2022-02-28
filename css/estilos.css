@@ -1,11 +1,11 @@
 @charset "UTF-8";
 
 .ccm-save-p {
-	overflow: hidden;
+	overflow: hidden
 }
 .ccm-save i {
 	position: relative;
-	top: 30px;
+	top: 30px
 }
 .ccm-save-a span i {
 	margin-top: 0;
@@ -16,23 +16,23 @@
 @keyframes ccm-save-icon {
 	0% {
 		margin-top: 0px;
-		color: inherit;
+		color: inherit
 	}
 	49% {
-		color: inherit;
+		color: inherit
 	}
 	50% {
 		margin-top: -60px;
-		color: #ff9800;
+		color: #ff9800
 	}
 	75% {
 		margin-top: -60px;
-		color: #ff9800;
+		color: #ff9800
 	}
 	76% {
-		color: inherit;
+		color: inherit
 	}
 	100% {
-		margin-top: 0px;
+		margin-top: 0px
 	}
 }

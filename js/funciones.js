@@ -9,14 +9,14 @@ const el = {
 	inputE: document.body.querySelectorAll ('input:not([readonly])'), // Elementos input editables.
 	inputN: document.body.querySelectorAll ('input[readonly]'), // Elementos input sólo legibles.
 	formulario: document.body.querySelector ('form[name=calculoCM]'), // Elemento del formulario que engloba los inputs.
-	margenPD: 1.20 // Valor del input 'margen' por defecto.
+	margenPD: 1.2 // Valor del input 'margen' por defecto.
 },
 calcularValores = () => { // Función que obtiene los valores, hace los cálculos necesarios y muestra los resultados en los campos pertinentes.
-	const A = Number (el.inputE [0].value), // Obtenemos el valor actual del input de 'coste'.
+	const A = el.inputE [0].value, // Obtenemos el valor actual del input de 'coste'.
 	B = el.inputE [1].value, // Obtenemos el valor actual del input de 'margen'.
 	C = Number (A*B+A); // Calculamos el valor deseado para input C.
 
-	el.inputN [0].value = C.round (3); // Muestra el resultado en input C, redondeando al tercer decimal como máximo si es relevante.
+	el.inputN [0].value = C.redondear (3); // Muestra el resultado en input C, redondeando al tercer decimal como máximo si es relevante.
 
 	return {A,B,C}; // Para debug; devuelve los valores calculados sin redondear.
 },
@@ -60,7 +60,7 @@ modMargen = v => { // Comprueba, carga o guarda el valor del input 'margen' loca
 	return margen.value = parseFloat (v ? !localStorage.setItem ('ccm-margen', Number (v)) ? v : cMargen : cMargen ? cMargen : val); // Devolvemos el valor correspondiente dependiendo de si se ha modificado el de por defecto.
 };
 
-Number.prototype.round = function (n) { // Extendemos a partir del objeto Number, una función para redondear valores. Fuente: https://www.codingem.com/javascript-how-to-limit-decimal-places/
+Number.prototype.redondear = function (n) { // Extendemos a partir del objeto Number, una función para redondear valores. Fuente: https://www.codingem.com/javascript-how-to-limit-decimal-places/
 	const d = Math.pow (10, n);
 	return Math.round ((this + Number.EPSILON) * d) / d;
 }
