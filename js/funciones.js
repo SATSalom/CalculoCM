@@ -12,8 +12,8 @@ const el = {
 	margenPD: 1.2 // Valor del input 'margen' por defecto.
 },
 calcularValores = () => { // Función que obtiene los valores, hace los cálculos necesarios y muestra los resultados en los campos pertinentes.
-	const A = el.inputE [0].value, // Obtenemos el valor actual del input de 'coste'.
-	B = el.inputE [1].value, // Obtenemos el valor actual del input de 'margen'.
+	const A = Number (el.inputE [0].value), // Obtenemos el valor actual del input de 'coste'.
+	B = Number (el.inputE [1].value), // Obtenemos el valor actual del input de 'margen'.
 	C = Number (A*B+A); // Calculamos el valor deseado para input C.
 
 	el.inputN [0].value = C.redondear (3); // Muestra el resultado en input C, redondeando al tercer decimal como máximo si es relevante.
